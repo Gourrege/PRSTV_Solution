@@ -20,9 +20,22 @@ namespace PRSTV_WPF.Pages
     /// </summary>
     public partial class CountMenu : Page
     {
+
+        private BallotPaperService? _ballotService;
+
         public CountMenu()
         {
             InitializeComponent();
+            Loaded += CountMenuPage_Loaded;
+        }
+
+        private async void CountMenuPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var client = await SupabaseClientFactory.GetClientAsync();
+            _ballotService = new BallotPaperService(client);
+
+            // Example call
+            // var ballots = await _ballotService.GetAllAsync();
         }
 
         private void ContinueCount_Click(object sender, RoutedEventArgs e)
