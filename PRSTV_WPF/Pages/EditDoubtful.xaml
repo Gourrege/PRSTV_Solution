@@ -1,0 +1,148 @@
+﻿<Page x:Class="PRSTV_WPF.Pages.EditDoubtful"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PRSTV_WPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      FontSize="16"
+      Title="EditDoubtful">
+
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="119*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header -->
+            <RowDefinition Height="Auto"/>
+            <!-- Ballot details -->
+            <RowDefinition Height="*"/>
+            <!-- Image + DataGrid -->
+            <RowDefinition Height="Auto"/>
+            <!-- Save bar -->
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,10" LastChildFill="True">
+            <Button Content="← Back"
+                    Padding="10,6"
+                    Margin="0,0,10,0"
+                    Click="Back_Click"
+                    Width="73"
+                    Height="35"
+                    DockPanel.Dock="Left"/>
+            <TextBlock Text="Ballot Details"
+                       FontSize="22"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <!-- Ballot details card -->
+        <Border Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Padding="10"
+                CornerRadius="8"
+                BorderBrush="#DDD"
+                BorderThickness="1"
+                Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Row 0 -->
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="Ballot Id:"
+                           FontWeight="SemiBold"
+                           Margin="0,0,8,0"/>
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                           Text="{Binding Id}"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="2"
+                           Text="Random Ballot Id:"
+                           FontWeight="SemiBold"
+                           Margin="20,0,8,0"/>
+                <TextBlock Grid.Row="0" Grid.Column="3"
+                           Text="{Binding RandomBallotId}"/>
+
+                <!-- Row 1 -->
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           Text="Ballot State:"
+                           FontWeight="SemiBold"
+                           Margin="0,10,8,0"/>
+                <ComboBox x:Name="BallotStateCombo"
+                          Grid.Row="1"
+                          Grid.Column="1"
+                          Margin="0,10,0,0"
+                          Width="180"/>
+            </Grid>
+        </Border>
+
+        <!-- Image + DataGrid -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT: Ballot image -->
+            <Border Grid.Column="0"
+                    Margin="0,0,10,0"
+                    Padding="10"
+                    CornerRadius="8"
+                    BorderBrush="#DDD"
+                    BorderThickness="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <Image x:Name="BallotImage"
+                           Stretch="Uniform"
+                           SnapsToDevicePixels="True"/>
+                </ScrollViewer>
+            </Border>
+
+            <!-- RIGHT: Candidates / preferences -->
+            <DataGrid x:Name="PreferencesGrid"
+                      Grid.Column="1"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Candidate"
+                                        Binding="{Binding CandidateName}"
+                                        IsReadOnly="True"
+                                        Width="*"/>
+                    <DataGridTextColumn Header="Preference"
+                                        Binding="{Binding Preference, UpdateSourceTrigger=PropertyChanged}"
+                                        Width="140"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!-- Save bar -->
+        <DockPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,10,0,0" LastChildFill="True">
+            <Button Content="SAVE"
+                    DockPanel.Dock="Left"
+                    Padding="16,8"
+                    Click="Update_Click"/>
+            <TextBlock x:Name="StatusText"
+                       Margin="10,0,0,0"
+                       DockPanel.Dock="Right"
+                       VerticalAlignment="Center"
+                       Foreground="Gray"/>
+        </DockPanel>
+
+    </Grid>
+</Page>
