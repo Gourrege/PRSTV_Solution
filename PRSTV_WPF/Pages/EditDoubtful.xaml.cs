@@ -209,5 +209,37 @@ namespace PRSTV_WPF.Pages
             }
         }
 
+        //ZOOM FUNCTION FOR THE IMAGE
+
+        private const double ZoomStep = 0.1;
+        private const double MinZoom = 0.2;
+        private const double MaxZoom = 5.0;
+
+        private void ZoomIn_Click(object sender, RoutedEventArgs e) => SetZoom(ImageScale.ScaleX + ZoomStep);
+
+        private void ZoomOut_Click(object sender, RoutedEventArgs e) => SetZoom(ImageScale.ScaleX - ZoomStep);
+
+        private void ZoomReset_Click(object sender, RoutedEventArgs e)
+        {
+            // Reset to "fit" view (scale 1 works well with Stretch=Uniform)
+            SetZoom(1.0);
+            ImageScrollViewer.ScrollToHorizontalOffset(0);
+            ImageScrollViewer.ScrollToVerticalOffset(0);
+        }
+
+        private void SetZoom(double zoom)
+        {
+            zoom = Math.Max(MinZoom, Math.Min(MaxZoom, zoom));
+            ImageScale.ScaleX = zoom;
+            ImageScale.ScaleY = zoom;
+        }
+
+        // Optional: auto-fit/reset when the image first loads
+        private void BallotImage_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetZoom(1.0);
+        }
+
+
     }
 }

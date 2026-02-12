@@ -9,7 +9,7 @@ namespace PRSTV_WPF
 {
     public class SupabaseClientFactory
     {
-        public static Client Client { get; private set; } = null!;
+        public static Client? Client { get; private set; }
 
         public static async Task InitializeAsync()
         {
@@ -22,6 +22,12 @@ namespace PRSTV_WPF
             );
 
             await Client.InitializeAsync();
+        }
+
+        public static async Task<Client> GetClientAsync()
+        {
+            await InitializeAsync();
+            return Client!; // safe because InitializeAsync guarantees it
         }
     }
 }

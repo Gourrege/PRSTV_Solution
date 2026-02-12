@@ -32,11 +32,10 @@ namespace PRSTV_WPF.Pages
         }
         private async void BallotListPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            _ballotService = new BallotPaperService(SupabaseClientFactory.Client);
+            var client = await SupabaseClientFactory.GetClientAsync();
+            _ballotService = new BallotPaperService(client);
 
-            // Your existing method returns Doubtful ballots (as coded)
             _ballots = await _ballotService.GetAllAsync();
-
             BallotGrid.ItemsSource = _ballots;
         }
 

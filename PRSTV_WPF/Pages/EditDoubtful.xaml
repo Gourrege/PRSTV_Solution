@@ -104,12 +104,43 @@
                     CornerRadius="8"
                     BorderBrush="#DDD"
                     BorderThickness="1">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Auto">
-                    <Image x:Name="BallotImage"
-                           Stretch="Uniform"
-                           SnapsToDevicePixels="True"/>
-                </ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Zoom controls -->
+                    <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,0,8">
+                        <Button Content="−" Width="36" Height="32" Click="ZoomOut_Click" Margin="0,0,6,0"/>
+                        <Button Content="+" Width="36" Height="32" Click="ZoomIn_Click" Margin="0,0,6,0"/>
+                        <Button Content="Reset" Height="32" Click="ZoomReset_Click"/>
+                    </StackPanel>
+
+                    <!-- Image viewer -->
+                    <ScrollViewer Grid.Row="1"
+                                  x:Name="ImageScrollViewer"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  CanContentScroll="False">
+
+                        <Image x:Name="BallotImage"
+                               Stretch="Uniform"
+                               SnapsToDevicePixels="True"
+                               RenderTransformOrigin="0.5,0.5"
+                               Loaded="BallotImage_Loaded">
+
+                            <!-- IMPORTANT: LayoutTransform, not RenderTransform -->
+                            <Image.LayoutTransform>
+                                <ScaleTransform x:Name="ImageScale" ScaleX="1" ScaleY="1"/>
+                            </Image.LayoutTransform>
+                        </Image>
+                    </ScrollViewer>
+                </Grid>
+
             </Border>
 
             <!-- RIGHT: Candidates / preferences -->
