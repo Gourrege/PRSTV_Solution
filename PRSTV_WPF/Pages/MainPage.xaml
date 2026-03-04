@@ -1,60 +1,51 @@
-﻿<Page x:Class="PRSTV_WPF.Pages.MainPage"
+﻿<Page x:Class="PRST_XAML.Pages.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      FontSize="16">
+      Background="{StaticResource Brush.WindowBackground}">
 
-    <Grid>
+    <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Nav bar -->
+            <RowDefinition Height="16"/>
             <RowDefinition Height="*"/>
-            <!-- Page content -->
         </Grid.RowDefinitions>
 
-        <!-- NAV BAR -->
-        <Border Grid.Row="0"
-                Background="#1F2937"
-                Padding="12"
-                BorderBrush="#111827"
-                BorderThickness="0,0,0,1">
+        <StackPanel>
+            <TextBlock FontSize="28" FontWeight="SemiBold" Text="PR-STV Counting" />
+            <TextBlock Margin="0,6,0,0"
+                       Foreground="{StaticResource Brush.TextSecondary}"
+                       TextWrapping="Wrap"
+                       Text="Start a new election or resume an unfinished one. The counting logic and database behavior are unchanged." />
+        </StackPanel>
 
-            <DockPanel LastChildFill="True">
+        <Border Grid.Row="1"
+                Style="{StaticResource Card}"
+                MaxWidth="720"
+                HorizontalAlignment="Center"
+                Margin="0,16,22,0"
+                Grid.RowSpan="2"
+                Width="520">
+            <StackPanel>
+                <TextBlock FontSize="18" FontWeight="SemiBold" Text="What would you like to do?" />
+                <TextBlock Margin="0,6,0,0"
+                           Foreground="{StaticResource Brush.TextSecondary}"
+                           TextWrapping="Wrap"
+                           Text="You can start from fresh ballots (new election) or pick up from where an earlier run left off."/>
 
-                <!-- App title -->
-                <TextBlock Text="PRS TV"
-                           FontSize="20"
-                           FontWeight="SemiBold"
-                           Foreground="White"
-                           DockPanel.Dock="Left"
-                           Margin="0,0,30,0"/>
+                <StackPanel Margin="0,16,0,0" Orientation="Horizontal">
+                    <Button Style="{StaticResource PrimaryButton}"
+                            Margin="0,0,12,0"
+                            Content="Start new election"
+                            Click="StartNewElection_Click" />
 
-                <!-- Navigation buttons -->
-                <StackPanel Orientation="Horizontal"
-                            DockPanel.Dock="Left">
-
-                    <Button Content="Count Menu"
-                            Width="140"
-                            Margin="0,0,10,0"
-                            Click="CountMenu_Click"/>
-
-                    <Button Content="Create Election"
-                            Width="160"
-                            Click="CreateElection_Click"/>
+                    <Button Style="{StaticResource SecondaryButton}"
+                            Content="Resume election"
+                            Click="ResumeElection_Click" />
                 </StackPanel>
-
-            </DockPanel>
+            </StackPanel>
         </Border>
-
-        <!-- MAIN PAGE CONTENT -->
-        <Grid Grid.Row="1">
-            <TextBlock Text="Main page content goes here"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="24"
-                       Foreground="Gray"/>
-        </Grid>
     </Grid>
 </Page>

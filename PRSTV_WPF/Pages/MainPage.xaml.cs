@@ -23,16 +23,22 @@ namespace PRSTV_WPF.Pages
         public MainPage()
         {
             InitializeComponent();
+
+            // Optional: if you still want the VM for properties later, keep it:
+            // DataContext = new PRST_XAML.ViewModels.Pages.HomePageViewModel();
         }
 
-        private void CountMenu_Click(object sender, RoutedEventArgs e)
+        private void StartNewElection_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new CountMenu());
+            // Replace NewElectionPage with your actual page type
+            NavigationService?.Navigate(new NewElectionPage());
         }
 
-        private void CreateElection_Click(object sender, RoutedEventArgs e)
+        private void ResumeElection_Click(object sender, RoutedEventArgs e)
         {
-            // NavigationService?.Navigate(new CreateElectionPage());
+            // Replace ChooseElectionPage with your actual page type
+            NavigationService?.Navigate(new ChooseElectionPage());
         }
     }
 }
+
