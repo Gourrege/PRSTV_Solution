@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRSTV_ClassLibrary", "PRSTV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRSTV_ConsoleApp", "PRSTV_ConsoleApp\PRSTV_ConsoleApp.csproj", "{58FB444A-976E-31DA-1728-EF5758E240CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRSTV_WPF_v2", "PRSTV_WPF_v2\PRSTV_WPF_v2.csproj", "{087220EF-815E-4542-B287-2DD92E8C67EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{58FB444A-976E-31DA-1728-EF5758E240CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58FB444A-976E-31DA-1728-EF5758E240CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58FB444A-976E-31DA-1728-EF5758E240CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{087220EF-815E-4542-B287-2DD92E8C67EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{087220EF-815E-4542-B287-2DD92E8C67EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{087220EF-815E-4542-B287-2DD92E8C67EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{087220EF-815E-4542-B287-2DD92E8C67EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
